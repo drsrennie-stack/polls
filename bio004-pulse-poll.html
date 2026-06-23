@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIO 004 Mid-Term Pulse Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     BIO 004 Mid-Term Pulse Check
+     Branding matched to the live Anatomy Loops site (index.html).
+     ============================================================ */
+  :root{
+    --navy:#0B1530; --navy-deep:#0B1530; --navy-darkest:#060A18; --navy-tint:#ECEFF4;
+    --terra:#C2734D; --terra-dark:#8B3A2E; --terra-deep:#A0452F;
+    --gold:#C9A14A;
+    --white:#FFFFFF; --offwhite:#FAFAF9; --gray:#6B7280; --gray-light:#D1D5DB;
+    --radius:8px;
+    --shadow-rest:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover:0 10px 22px rgba(0,0,0,0.12);
+    --t:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease;
+    --font-display:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-eyebrow:'DM Sans',-apple-system,sans-serif;
+    --font-serif:'Lora',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--font-body);color:var(--navy);background:var(--offwhite);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:30px 20px 56px;}
+  .skip{position:absolute;left:-9999px;top:auto;background:var(--terra-dark);color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;z-index:50;text-decoration:none;}
+  .skip:focus{left:16px;top:16px;}
+  :focus-visible{outline:3px solid var(--terra-dark);outline-offset:3px;border-radius:6px;}
+
+  /* ---------- COURSE LOGO HEADER (matches site) ---------- */
+  .site-header{background:#fff;border-bottom:.5px solid rgba(11,21,48,.10);padding:22px max(20px,4vw);}
+  .site-header-inner{max-width:760px;margin:0 auto;}
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none;}
+  .site-logo svg{height:54px;width:auto;display:block;}
+  .logo-text{display:flex;flex-direction:column;gap:3px;}
+  .logo-title{font-family:var(--font-display);font-size:1.68rem;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--terra-dark);}
+  .logo-sub{font-family:var(--font-eyebrow);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);opacity:.72;}
+
+  /* ---------- PAGE HEADING ---------- */
+  .eyebrow{font-family:var(--font-eyebrow);font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 .8rem;}
+  h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.025em;color:var(--navy-deep);margin:0 0 .9rem;}
+  .rule{width:3.2rem;height:3px;background:var(--terra-dark);border-radius:2px;margin:0 0 1.1rem;border:0;}
+  .subhead{font-family:var(--font-display);font-weight:600;color:var(--terra-dark);font-size:clamp(1.05rem,2.4vw,1.3rem);margin:0;}
+  .usage{font-family:var(--font-serif);font-style:italic;color:var(--navy);opacity:.85;margin:.9rem 0 0;font-size:1.02rem;max-width:46rem;}
+
+  .anon-note{
+    display:flex;gap:11px;align-items:flex-start;
+    background:var(--navy-tint);border:1px solid var(--navy);
+    border-radius:var(--radius);padding:13px 15px;margin:20px 0 6px;
+    font-size:.96rem;color:var(--navy);
+  }
+  .anon-note strong{color:var(--navy);}
+  .anon-note svg{flex:0 0 auto;margin-top:2px;}
+
+  /* ---------- CARDS / FIELDSETS ---------- */
+  fieldset{
+    background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);
+    padding:22px 22px 18px;margin:22px 0;box-shadow:var(--shadow-rest);transition:var(--t);
+  }
+  fieldset:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--terra-dark);}
+  legend{font-family:var(--font-display);font-weight:800;color:var(--navy);font-size:1.18rem;padding:0 8px;margin-left:-4px;letter-spacing:-.01em;}
+  .q-num{color:var(--terra-dark);font-weight:800;}
+  .help{font-family:var(--font-serif);font-style:italic;color:var(--navy);opacity:.85;font-size:.98rem;margin:4px 0 16px;}
+
+  /* ---------- OPTIONS ---------- */
+  .opt{
+    display:flex;gap:12px;align-items:flex-start;
+    border:1px solid var(--navy-tint);border-radius:var(--radius);
+    padding:12px 14px;margin:8px 0;cursor:pointer;transition:var(--t);
+  }
+  .opt:hover{border-color:var(--terra-dark);}
+  .opt:focus-within{border-color:var(--terra-dark);box-shadow:0 0 0 3px rgba(139,58,46,.22);}
+  .opt input{margin-top:3px;width:20px;height:20px;flex:0 0 auto;accent-color:var(--navy);cursor:pointer;}
+  .opt .label-text{cursor:pointer;}
+  .opt .label-text b{color:var(--navy);font-family:var(--font-display);}
+  .opt .sub{display:block;font-size:.9rem;color:var(--navy);opacity:.72;margin-top:2px;}
+  /* completed/checked state: navy border on navy-tint fill */
+  .opt:has(input:checked){border-color:var(--navy);background:var(--navy-tint);}
+
+  /* ---------- TEXT INPUTS ---------- */
+  label.field-label{display:block;font-family:var(--font-display);font-weight:600;margin:14px 0 6px;color:var(--navy);}
+  input[type="text"],textarea{
+    width:100%;font-family:var(--font-body);font-size:1rem;color:var(--navy);
+    background:var(--offwhite);border:2px solid var(--navy-tint);border-radius:9px;padding:10px 13px;
+  }
+  textarea{min-height:84px;resize:vertical;}
+  input[type="text"]:focus,textarea:focus{outline:none;border-color:var(--terra-dark);background:#fff;}
+  .inline-other{margin:6px 0 2px 32px;max-width:calc(100% - 32px);}
+
+  /* ---------- SUBMIT ---------- */
+  .actions{margin-top:26px;text-align:center;}
+  button[type="submit"]{
+    font-family:var(--font-display);font-size:1.05rem;font-weight:800;
+    color:#fff;background:var(--terra-dark);border:2px solid var(--terra-dark);border-radius:9px;
+    padding:14px 36px;cursor:pointer;transition:var(--t);
+  }
+  button[type="submit"]:hover{background:var(--terra-deep);border-color:var(--terra-deep);transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+  button[type="submit"]:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  button[type="submit"][disabled]{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
+
+  .status{margin:18px auto 0;max-width:560px;font-size:1rem;border-radius:var(--radius);padding:14px 16px;display:none;font-weight:600;}
+  .status.show{display:block;}
+  .status.ok{background:var(--navy-tint);border:1px solid var(--navy);color:var(--navy);}
+  .status.err{background:#FBEDE7;border:1px solid var(--terra-dark);color:var(--terra-dark);}
+
+  /* ---------- FOOTER (matches site) ---------- */
+  footer{background:var(--navy-darkest);color:var(--navy-tint);text-align:center;padding:1.9rem 1.5rem 1.7rem;border-top:2px solid var(--terra);border-radius:var(--radius);margin-top:42px;}
+  footer .by{font-family:var(--font-display);font-weight:700;color:#fff;font-size:1rem;margin-bottom:.15rem;}
+  footer .role{font-size:.82rem;color:var(--navy-tint);}
+  footer .brand{font-family:var(--font-eyebrow);font-weight:700;color:var(--terra);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.9rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:.01ms !important;animation:none !important;scroll-behavior:auto !important;}
+    fieldset:hover{transform:none;}
+    button[type="submit"]:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#poll">Skip to the poll</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="https://drsrennie-stack.github.io/new-build-bio4-solano/index.html" class="site-logo" target="_top" aria-label="BIO 004 Human Anatomy, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">Anatomy</span></span>
+        <span class="logo-sub">BIO 004 &middot; Solano Community College</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">BIO 004 &middot; Anonymous Check-In &middot; MedMasters Collaborative</p>
+    <h1>Mid-Term Pulse Check</h1>
+    <hr class="rule">
+    <p class="subhead">Your honest read on the schedule, your tools, and how it is going</p>
+    <p class="usage">Takes about three minutes. There are no wrong answers. The more honest you are, the more useful this is to me.</p>
+
+    <div class="anon-note" role="note">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#0B1530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      <span><strong>This is anonymous.</strong> I do not collect your name, email, or any way to identify you. I only see the answers, never who wrote them. Say what you actually think.</span>
+    </div>
+  </header>
+
+  <main id="poll">
+  <form id="pollForm" novalidate>
+
+    <!-- ===================== Q1: weekly structure ===================== -->
+    <fieldset>
+      <legend><span class="q-num">1.</span> The weekly rhythm</legend>
+      <p class="help" id="q1help">Watch videos online before class, come in for active learning (cases, drawing, application), TBL on Thursdays, lab exam on Mondays. How do you feel about that structure?</p>
+      <div role="radiogroup" aria-labelledby="q1help">
+        <label class="opt"><input type="radio" name="q1_structure" value="Love it"><span class="label-text"><b>Love it.</b><span class="sub">The predictable pattern works well for me.</span></span></label>
+        <label class="opt"><input type="radio" name="q1_structure" value="Mostly like it"><span class="label-text"><b>Mostly like it.</b><span class="sub">A few tweaks would help, but it mostly works.</span></span></label>
+        <label class="opt"><input type="radio" name="q1_structure" value="Neutral"><span class="label-text"><b>Neutral.</b><span class="sub">It is fine, no strong feeling either way.</span></span></label>
+        <label class="opt"><input type="radio" name="q1_structure" value="Mostly dislike it"><span class="label-text"><b>Mostly dislike it.</b><span class="sub">The structure gets in my way more than it helps.</span></span></label>
+        <label class="opt"><input type="radio" name="q1_structure" value="Dislike it"><span class="label-text"><b>Dislike it.</b><span class="sub">This format is not working for me.</span></span></label>
+      </div>
+    </fieldset>
+
+    <!-- ===================== Q2: pace vs exam tradeoff ===================== -->
+    <fieldset>
+      <legend><span class="q-num">2.</span> Pace and exams, the real tradeoff</legend>
+      <p class="help" id="q2help">If you had to pick one for a course like this, which do you prefer? I cannot promise to change the schedule once the term has started, but I want to know where you stand.</p>
+      <div role="radiogroup" aria-labelledby="q2help">
+        <label class="opt"><input type="radio" name="q2_pace" value="Faster pace, more frequent exams, more recovery chances"><span class="label-text"><b>Keep the faster pace.</b><span class="sub">Less material per exam, exams come more often, and more chances to recover or improve a low score.</span></span></label>
+        <label class="opt"><input type="radio" name="q2_pace" value="Slower pace, five exams spread out, fewer recovery chances"><span class="label-text"><b>Slower, more spread out.</b><span class="sub">Five exams spaced a few more days apart, more material per exam, fewer chances to recover a low score.</span></span></label>
+        <label class="opt"><input type="radio" name="q2_pace" value="Genuinely fine either way"><span class="label-text"><b>I am fine either way.</b><span class="sub">No strong preference between the two.</span></span></label>
+      </div>
+      <label class="field-label" for="q2_why">Want to say why? (optional)</label>
+      <textarea id="q2_why" name="q2_why" placeholder="What matters most to you about pace, exam frequency, or recovery chances?"></textarea>
+    </fieldset>
+
+    <!-- ===================== Q3: tools USED ===================== -->
+    <fieldset>
+      <legend><span class="q-num">3.</span> Which study tools have you actually used?</legend>
+      <p class="help">Check all that apply. Be honest, even if the answer is "barely any yet."</p>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Spaced recall cards"><span class="label-text">Spaced recall cards</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Drawing canvas / whiteboard tool"><span class="label-text">The drawing canvas / whiteboard tool</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Printed atlas pictures with whiteboard markers"><span class="label-text">Printing atlas pictures and labeling them with whiteboard markers</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Studying from the slides"><span class="label-text">Studying from the slides</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Reading the textbook"><span class="label-text">Reading the textbook</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Making my own study guides"><span class="label-text">Making my own study guides</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Loop videos"><span class="label-text">The Loop videos</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Interactive note sheets"><span class="label-text">The interactive note sheets</span></label>
+      <label class="opt"><input type="checkbox" name="q3_used" value="Other (used)"><span class="label-text">Something else (type below)</span></label>
+      <input class="inline-other" type="text" id="q3_used_other" name="q3_used_other" aria-label="Other tools you have used" placeholder="Other tools you have used">
+    </fieldset>
+
+    <!-- ===================== Q4: tools MOST HELPFUL ===================== -->
+    <fieldset>
+      <legend><span class="q-num">4.</span> Which have been the most helpful?</legend>
+      <p class="help">Check all that apply. This is the one I care about most, so pick what genuinely moved the needle for you.</p>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Spaced recall cards"><span class="label-text">Spaced recall cards</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Drawing canvas / whiteboard tool"><span class="label-text">The drawing canvas / whiteboard tool</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Printed atlas pictures with whiteboard markers"><span class="label-text">Printing atlas pictures and labeling them with whiteboard markers</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Studying from the slides"><span class="label-text">Studying from the slides</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Reading the textbook"><span class="label-text">Reading the textbook</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Making my own study guides"><span class="label-text">Making my own study guides</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Loop videos"><span class="label-text">The Loop videos</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Interactive note sheets"><span class="label-text">The interactive note sheets</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Nothing has clicked yet"><span class="label-text">Honestly, nothing has really clicked yet</span></label>
+      <label class="opt"><input type="checkbox" name="q4_helpful" value="Other (helpful)"><span class="label-text">Something else (type below)</span></label>
+      <input class="inline-other" type="text" id="q4_helpful_other" name="q4_helpful_other" aria-label="Other tool that helped most" placeholder="Other tool that helped most">
+    </fieldset>
+
+    <!-- ===================== Q5: feelings ===================== -->
+    <fieldset>
+      <legend><span class="q-num">5.</span> How are you feeling about the course right now?</legend>
+      <p class="help" id="q5help">Pick the one closest to your honest gut read this week.</p>
+      <div role="radiogroup" aria-labelledby="q5help">
+        <label class="opt"><input type="radio" name="q5_feeling" value="Confident and on top of it"><span class="label-text">Confident and on top of it</span></label>
+        <label class="opt"><input type="radio" name="q5_feeling" value="Mostly good and manageable"><span class="label-text">Mostly good, it feels manageable</span></label>
+        <label class="opt"><input type="radio" name="q5_feeling" value="Hanging in there"><span class="label-text">Hanging in there</span></label>
+        <label class="opt"><input type="radio" name="q5_feeling" value="Stressed but pushing through"><span class="label-text">Stressed, but pushing through</span></label>
+        <label class="opt"><input type="radio" name="q5_feeling" value="Overwhelmed"><span class="label-text">Overwhelmed</span></label>
+      </div>
+    </fieldset>
+
+    <!-- ===================== Q6: hours ===================== -->
+    <fieldset>
+      <legend><span class="q-num">6.</span> Hours per week studying outside class</legend>
+      <p class="help" id="q6help">Roughly, on average. No judgment, just a real number.</p>
+      <div role="radiogroup" aria-labelledby="q6help">
+        <label class="opt"><input type="radio" name="q6_hours" value="Under 3"><span class="label-text">Under 3 hours</span></label>
+        <label class="opt"><input type="radio" name="q6_hours" value="3 to 5"><span class="label-text">3 to 5 hours</span></label>
+        <label class="opt"><input type="radio" name="q6_hours" value="6 to 8"><span class="label-text">6 to 8 hours</span></label>
+        <label class="opt"><input type="radio" name="q6_hours" value="9 to 12"><span class="label-text">9 to 12 hours</span></label>
+        <label class="opt"><input type="radio" name="q6_hours" value="13 or more"><span class="label-text">13 or more hours</span></label>
+      </div>
+    </fieldset>
+
+    <!-- ===================== Q7: organization ===================== -->
+    <fieldset>
+      <legend><span class="q-num">7.</span> How do you keep your course materials organized?</legend>
+      <p class="help">Check all that apply. The examples are just to make it quick to answer.</p>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Binder or notebook by body system"><span class="label-text">A binder or notebook split by body system</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Digital folders (Drive/OneDrive)"><span class="label-text">Digital folders (Google Drive, OneDrive, etc.)</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Printed atlas pages I label"><span class="label-text">Printed atlas pages I label and re-label</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Flashcards (physical or app)"><span class="label-text">Flashcards, physical or in an app</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Everything in one notebook"><span class="label-text">Everything lives in one notebook</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Honestly not very organized"><span class="label-text">Honestly, not very organized yet</span></label>
+      <label class="opt"><input type="checkbox" name="q7_org" value="Other (org)"><span class="label-text">Something else (type below)</span></label>
+      <input class="inline-other" type="text" id="q7_org_other" name="q7_org_other" aria-label="Other way you organize materials" placeholder="Other way you organize your materials">
+    </fieldset>
+
+    <!-- ===================== Q8: could have done better ===================== -->
+    <fieldset>
+      <legend><span class="q-num">8.</span> What could you have done better so far?</legend>
+      <p class="help">Just for your own reflection. Optional, but worth a sentence if you can.</p>
+      <label class="field-label" for="q8_better">Your answer</label>
+      <textarea id="q8_better" name="q8_better" placeholder="For example: started studying earlier each week, asked questions sooner, drawn more from memory..."></textarea>
+    </fieldset>
+
+    <!-- ===================== Q9: anything else ===================== -->
+    <fieldset>
+      <legend><span class="q-num">9.</span> Anything else you want me to know?</legend>
+      <p class="help">Optional. The floor is yours, this is the place to be candid.</p>
+      <label class="field-label" for="q9_open">Your answer</label>
+      <textarea id="q9_open" name="q9_open" placeholder="Anything at all about the course, the pace, the tools, or how you are doing."></textarea>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" id="submitBtn">Submit anonymously</button>
+      <div class="status" id="statusMsg" role="status" aria-live="polite"></div>
+    </div>
+
+  </form>
+  </main>
+
+  <footer>
+    <div class="by">Dr. Sharilyn Rennie</div>
+    <div class="role">Professor of Anatomy &amp; Physiology</div>
+    <div class="brand">MedMasters Collaborative</div>
+  </footer>
+</div>
+
+<script>
+  /* ============================================================
+     1) PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW.
+        Setup steps are in the file: apps-script-setup.md
+     ============================================================ */
+  var ENDPOINT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  var form = document.getElementById('pollForm');
+  var statusMsg = document.getElementById('statusMsg');
+  var submitBtn = document.getElementById('submitBtn');
+
+  function showStatus(kind, text){
+    statusMsg.className = 'status show ' + kind;
+    statusMsg.textContent = text;
+  }
+
+  // Collect answers. Checkbox groups are joined with " | ". No identifying data is collected.
+  function collectData(){
+    var fd = new FormData(form);
+    var grouped = {};
+    ['q3_used','q4_helpful','q7_org'].forEach(function(k){ grouped[k] = fd.getAll(k).join(' | '); });
+    return {
+      q1_structure: fd.get('q1_structure') || '',
+      q2_pace: fd.get('q2_pace') || '',
+      q2_why: fd.get('q2_why') || '',
+      q3_used: grouped.q3_used,
+      q3_used_other: fd.get('q3_used_other') || '',
+      q4_helpful: grouped.q4_helpful,
+      q4_helpful_other: fd.get('q4_helpful_other') || '',
+      q5_feeling: fd.get('q5_feeling') || '',
+      q6_hours: fd.get('q6_hours') || '',
+      q7_org: grouped.q7_org,
+      q7_org_other: fd.get('q7_org_other') || '',
+      q8_better: fd.get('q8_better') || '',
+      q9_open: fd.get('q9_open') || ''
+    };
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if(ENDPOINT_URL.indexOf('PASTE_YOUR') === 0){
+      showStatus('err', 'This poll is not connected yet. The endpoint URL still needs to be added before students can submit.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    showStatus('ok', 'Sending your responses...');
+
+    var data = collectData();
+    // form-encoded body avoids a CORS preflight against Apps Script
+    var body = new URLSearchParams();
+    Object.keys(data).forEach(function(k){ body.append(k, data[k]); });
+
+    // no-cors keeps Apps Script's redirect from throwing a false error; the write still happens
+    fetch(ENDPOINT_URL, { method:'POST', mode:'no-cors', body: body })
+      .then(function(){
+        form.reset();
+        showStatus('ok', 'Got it. Your anonymous responses were recorded. Thank you.');
+        submitBtn.textContent = 'Submitted';
+      })
+      .catch(function(){
+        showStatus('err', 'Something went wrong sending that. Please check your connection and try Submit once more.');
+        submitBtn.disabled = false;
+      });
+  });
+
+  /* ---- iframe height-sender (Kajabi / GitHub Pages embeds) ---- */
+  (function(){
+    var FRAME_ID = 'bio004-pulse-poll';
+    function sendHeight(){
+      var h = document.documentElement.scrollHeight;
+      if (window.parent && window.parent !== window){
+        window.parent.postMessage({ id: FRAME_ID, frameHeight: h }, '*');
+      }
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
+    setTimeout(sendHeight, 400);
+  })();
+</script>
+</body>
+</html>

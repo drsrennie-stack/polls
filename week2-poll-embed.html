@@ -1,0 +1,26 @@
+<!-- ============================================================
+     BIO 004 Week 2 Pulse Check, iframe embed
+     Paste this whole block into a Kajabi "Custom Code" block,
+     a Canvas page (HTML editor), or any page on your site.
+     The poll auto-resizes; no fixed height or scrollbars needed.
+     ============================================================ -->
+<iframe
+  id="bio004-week2-pulse-poll"
+  title="BIO 004 Week 2 Pulse Check"
+  src="https://drsrennie-stack.github.io/polls/bio004-week2-pulse-poll.html"
+  loading="lazy"
+  style="width:100%;border:0;display:block;overflow:hidden;"
+  height="2400"
+  scrolling="no"></iframe>
+
+<script>
+  (function(){
+    var frame = document.getElementById('bio004-week2-pulse-poll');
+    window.addEventListener('message', function(e){
+      var d = e.data;
+      if (d && d.id === 'bio004-week2-pulse-poll' && d.frameHeight){
+        frame.style.height = d.frameHeight + 'px';
+      }
+    });
+  })();
+</script>
